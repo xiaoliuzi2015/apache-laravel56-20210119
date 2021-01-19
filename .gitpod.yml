@@ -1,4 +1,8 @@
 image:
   file: .gitpod.Dockerfile
+ports:
+  - port: 8000
+    onOpen: open-preview
 tasks:
-  - init: mysql -u root -e "create database test"
+  - init: mysql -u root -e "create database test" && sed -i "s|APP_URL=|APP_URL=${GITPOD_WORKSPACE_URL}|g" .env && sed -i "s|APP_URL=https://|APP_URL=https://8000-|g" .env
+    command: php artisan migrate --seed && php artisan serve
