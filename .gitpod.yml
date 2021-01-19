@@ -1,4 +1,2 @@
 image:
   file: .gitpod.Dockerfile
-tasks:
-  - init: mysql -u root -e "create database test"
